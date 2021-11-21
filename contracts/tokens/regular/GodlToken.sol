@@ -1274,12 +1274,12 @@ contract TWAPOracleUpdater is ERC20Permit, VaultOwned {
     }
 
     function addTWAPSource( address newTWAPSourceDexPool_ ) external onlyOwner() {
-        require( _dexPoolsTWAPSources.add( newTWAPSourceDexPool_ ), "KlimaERC20TOken: TWAP Source already stored." );
+        require( _dexPoolsTWAPSources.add( newTWAPSourceDexPool_ ), "GodlERC20TOken: TWAP Source already stored." );
         emit TWAPSourceAdded( newTWAPSourceDexPool_ );
     }
 
     function removeTWAPSource( address twapSourceToRemove_ ) external onlyOwner() {
-        require( _dexPoolsTWAPSources.remove( twapSourceToRemove_ ), "KlimaERC20TOken: TWAP source not present." );
+        require( _dexPoolsTWAPSources.remove( twapSourceToRemove_ ), "GodlERC20TOken: TWAP source not present." );
         emit TWAPSourceRemoved( twapSourceToRemove_ );
     }
 
@@ -1309,11 +1309,11 @@ contract Divine is TWAPOracleUpdater {
     }
 }
 
-contract KlimaToken is Divine {
+contract GodlToken is Divine {
 
     using SafeMath for uint256;
 
-    constructor() Divine("Klima DAO", "KLIMA", 9) {
+    constructor() Divine("Godl DAO", "GODL", 9) {
     }
 
     function mint(address account_, uint256 amount_) external onlyVault() {

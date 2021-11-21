@@ -741,64 +741,64 @@ library SafeERC20 {
     }
 }
 
-interface IsKLIMA {
+interface IsGODL {
     function index() external view returns ( uint );
 }
 
-contract wsKLIMA is ERC20 {
+contract wsGODL is ERC20 {
     using SafeERC20 for ERC20;
     using Address for address;
     using SafeMath for uint;
 
-    address public immutable sKLIMA;
+    address public immutable sGODL;
 
-    constructor( address _sKLIMA ) ERC20( 'Wrapped sKLIMA', 'wsKLIMA' ) {
-        require( _sKLIMA != address(0) );
-        sKLIMA = _sKLIMA;
+    constructor( address _sGODL ) ERC20( 'Wrapped sGODL', 'wsGODL' ) {
+        require( _sGODL != address(0) );
+        sGODL = _sGODL;
     }
 
     /**
-        @notice wrap sKLIMA
+        @notice wrap sGODL
         @param _amount uint
         @return uint
      */
     function wrap( uint _amount ) external returns ( uint ) {
-        IERC20( sKLIMA ).transferFrom( msg.sender, address(this), _amount );
+        IERC20( sGODL ).transferFrom( msg.sender, address(this), _amount );
 
-        uint value = sKLIMATowKLIMA( _amount );
+        uint value = sGODLTowGODL( _amount );
         _mint( msg.sender, value );
         return value;
     }
 
     /**
-        @notice unwrap sKLIMA
+        @notice unwrap sGODL
         @param _amount uint
         @return uint
      */
     function unwrap( uint _amount ) external returns ( uint ) {
         _burn( msg.sender, _amount );
 
-        uint value = wKLIMATosKLIMA( _amount );
-        IERC20( sKLIMA ).transfer( msg.sender, value );
+        uint value = wGODLTosGODL( _amount );
+        IERC20( sGODL ).transfer( msg.sender, value );
         return value;
     }
 
     /**
-        @notice converts wKLIMA amount to sKLIMA
+        @notice converts wGODL amount to sGODL
         @param _amount uint
         @return uint
      */
-    function wKLIMATosKLIMA( uint _amount ) public view returns ( uint ) {
-        return _amount.mul( IsKLIMA( sKLIMA ).index() ).div( 10 ** decimals() );
+    function wGODLTosGODL( uint _amount ) public view returns ( uint ) {
+        return _amount.mul( IsGODL( sGODL ).index() ).div( 10 ** decimals() );
     }
 
     /**
-        @notice converts sKLIMA amount to wKLIMA
+        @notice converts sGODL amount to wGODL
         @param _amount uint
         @return uint
      */
-    function sKLIMATowKLIMA( uint _amount ) public view returns ( uint ) {
-        return _amount.mul( 10 ** decimals() ).div( IsKLIMA( sKLIMA ).index() );
+    function sGODLTowGODL( uint _amount ) public view returns ( uint ) {
+        return _amount.mul( 10 ** decimals() ).div( IsGODL( sGODL ).index() );
     }
 
 }

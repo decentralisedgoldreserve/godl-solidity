@@ -999,7 +999,7 @@ abstract contract ERC20Permit is ERC20, IERC2612Permit {
     }
 }
 
-contract sKlima is ERC20Permit, Ownable {
+contract sGodl is ERC20Permit, Ownable {
 
     using SafeMath for uint256;
 
@@ -1039,7 +1039,7 @@ contract sKlima is ERC20Permit, Ownable {
     // it's fully paid.
     mapping (address => mapping (address => uint256)) private _allowedFragments;
 
-    constructor() ERC20("Staked Klima", "sKLIMA", 9) {
+    constructor() ERC20("Staked Godl", "sGODL", 9) {
         _totalSupply = INITIAL_FRAGMENTS_SUPPLY;
         _gonsPerFragment = TOTAL_GONS.div(_totalSupply);
 
